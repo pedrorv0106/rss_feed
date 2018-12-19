@@ -17,12 +17,9 @@ const Coindesk = sequelize.define('coindesks', {
   updatedAt: 'updated_at',
 });
 
-function get_latest_rss(limit) {
-  if (limit == 0)
-    limit = 25;
-
+function get_latest_rss() {
   return Coindesk.findAll({
-    limit: limit,
+    limit: 25,
     order: [['created_at', 'DESC']]
   });
 }

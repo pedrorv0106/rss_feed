@@ -22,11 +22,39 @@ router.get('/coindesk', preAction, function (req, res) {
             "result": []
         };
         try {
-            var latestRss = yield dbMysql.get_latest_rss();
+            var latestRss = yield dbMysql.get_latest_rss(0);
             for (var i = 0; i < latestRss.length; i++) {
                 resultArrs[resultArrs.length] = {
                     title: latestRss[i].title,
-                    link: latestRss[i].link,
+                    url: latestRss[i].url,
+                    creator: latestRss[i].creator,
+                    content: latestRss[i].content,
+                    date: latestRss[i].isodate,
+                };
+            }
+            json_data['result'] = resultArrs;
+        }
+        catch (e) {
+            console.log(e);
+            json_data['result'] = [];
+        }
+        res.send(json_data);
+    });
+});
+router.post('/coindesk', preAction, function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        var limit = req.body.limit;
+        var resultArrs = [];
+        var json_data = {
+            "status": 'ok',
+            "result": []
+        };
+        try {
+            var latestRss = yield dbMysql.get_latest_rss(Number(limit));
+            for (var i = 0; i < latestRss.length; i++) {
+                resultArrs[resultArrs.length] = {
+                    title: latestRss[i].title,
+                    url: latestRss[i].url,
                     creator: latestRss[i].creator,
                     content: latestRss[i].content,
                     date: latestRss[i].isodate,
