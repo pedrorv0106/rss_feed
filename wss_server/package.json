@@ -1,0 +1,22 @@
+{
+  "name": "rss_feed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "mongoose": "^5.4.0",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
+    "rss-parser": "^3.6.0",
+    "sequelize": "^4.42.0",
+    "typescript": "^3.2.2",
+    "ws": "^6.1.2"
+  }
+}
