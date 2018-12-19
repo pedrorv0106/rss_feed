@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize('rss_feed', 'root', 'root', {
-    dialect: 'mysql'
+    dialect: 'mysql',
+    host: '172.31.29.91'
 });
 /* order model define */
 const Coindesk = sequelize.define('coindesks', {
