@@ -16,7 +16,7 @@
 	  	data: function () {
 	  		return {
 	  			title: 'CoinDesk',
-	  			rssData: {}
+	  			rssData: []
 	  		}
 	  	},
 
@@ -49,7 +49,8 @@
 
                 	return timeB - timeA
                 });
-                self.rssData = updatedRss.concat(self.rssData);
+
+                this.rssData = updatedRss.concat(this.rssData);
             },
 
             onopen: function() {
