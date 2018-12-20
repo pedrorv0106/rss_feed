@@ -42,7 +42,7 @@ async function getCoinDesk() {
 		  	dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, item.isoDate).catch(console.log);
 		  	newerItems[newerItems.length] = {
 		  		title: item.title,
-		  		link: item.link,
+		  		url: item.link,
 		  		creator: item.creator,
 		  		content: item.content,
 		  		date: item.isoDate,
