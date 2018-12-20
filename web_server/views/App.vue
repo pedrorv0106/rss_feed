@@ -28,8 +28,8 @@
 		    fetchData: function () {
 		      var xhr = new XMLHttpRequest()
 		      var self = this
-		      // var apiURL = 'http://18.191.245.20:3000/news/'
-		      var apiURL = 'http://localhost:3000/news/'
+		      var apiURL = 'http://18.191.245.20:3000/news/'
+		      // var apiURL = 'http://localhost:3000/news/'
 		      xhr.open('POST', apiURL + self.title)
 		      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		      xhr.onload = function () {
