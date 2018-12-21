@@ -5,13 +5,14 @@ const sequelize = new Sequelize('rss_feed', 'root', 'root', {
 });
 
 /* order model define */
-const Coindesk = sequelize.define('coindesks', {
+const Feed = sequelize.define('feed', {
   title: Sequelize.STRING,
   creator: Sequelize.STRING,
   url: Sequelize.STRING,
   content: Sequelize.STRING,
   content_snippet: Sequelize.STRING,
   isodate: Sequelize.DATE,
+  type: Sequelize.INTEGER,
 }, {
   createdAt: 'created_at',
   updatedAt: 'updated_at',
@@ -19,11 +20,11 @@ const Coindesk = sequelize.define('coindesks', {
 
 function get_latest_rss(limit) {
   if (limit == 0)
-    limit = 25;
+    limit = 100;
 
-  return Coindesk.findAll({
+  return Feed.findAll({
     limit: limit,
-    order: [['created_at', 'DESC']]
+    order: [['isodate', 'DESC']]
   });
 }
 
