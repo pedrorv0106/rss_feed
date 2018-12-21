@@ -35,7 +35,7 @@
 		         var jsonData = JSON.parse(xhr.responseText)
 		         self.rssData = jsonData['result']
 		      }
-		      xhr.send('limit=4')
+		      xhr.send('limit=50')
 		    }
 		},
 
