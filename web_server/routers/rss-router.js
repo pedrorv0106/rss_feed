@@ -13,7 +13,7 @@ var preAction = function (req, res, next) {
     next();
 };
 const router = express.Router();
-router.get('/coindesk', preAction, function (req, res) {
+router.get('/feed', preAction, function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         res.sendFile('index.html', { root: __dirname + '/../views/' });
     });
