@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as dbMysql from '../db/dbMysql';
 
 var preAction = function(req, res, next) {
     next();

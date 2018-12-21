@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{title}} News Feed</h1>
+    <h1>News Feed</h1>
     <div v-for="rss in rssData">
         <rss-item :rss="rss">
 		</rss-item>
@@ -15,7 +15,6 @@
 
 	  	data: function () {
 	  		return {
-	  			title: 'CoinDesk',
 	  			rssData: []
 	  		}
 	  	},
@@ -28,9 +27,9 @@
 		    fetchData: function () {
 		      var xhr = new XMLHttpRequest()
 		      var self = this
-		      var apiURL = 'http://18.191.245.20:3000/news/'
-		      // var apiURL = 'http://localhost:3000/news/'
-		      xhr.open('POST', apiURL + self.title)
+		      var apiURL = 'http://18.191.245.20:3000/news/feed'
+		      // var apiURL = 'http://localhost:3000/news/feed'
+		      xhr.open('POST', apiURL)
 		      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		      xhr.onload = function () {
 		         var jsonData = JSON.parse(xhr.responseText)

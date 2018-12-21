@@ -1,8 +1,8 @@
 <template>
   <div>
     <h3>{{rss['title']}}</h3>
-    <p>{{rss['content']}}</p>
-    <p>{{rss['creator']}} - {{rss['date']}}</p>
+    <p>{{rss['from']}}</p>
+    <p>{{rss['date']}}</p>
     <a :href="rss['url']" target='_blank'>{{rss['url']}}</a>
   </div>
 </template>
