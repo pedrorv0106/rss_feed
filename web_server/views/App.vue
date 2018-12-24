@@ -59,7 +59,8 @@
 
 	  	data: function () {
 	  		return {
-	  			rssData: []
+	  			rssData: [],
+	  			topic: ''
 	  		}
 	  	},
 
@@ -78,6 +79,7 @@
 		      xhr.onload = function () {
 		         var jsonData = JSON.parse(xhr.responseText)
 		         self.rssData = jsonData['result']
+		         self.topic = ''
 		      }
 		      xhr.send('limit=50')
 		    },
@@ -91,6 +93,7 @@
 		      xhr.onload = function () {
 		         var jsonData = JSON.parse(xhr.responseText)
 		         self.rssData = jsonData['result']
+		         self.topic = topic
 		      }
 		      xhr.send('limit=50&topic=' + topic);
 		    }
@@ -99,6 +102,7 @@
 		sockets: {
             onmessage: function(msg) {
                 var updatedRss = JSON.parse(msg.data);
+                var filteredTopicRss;
                 updatedRss.sort(function(a, b){
                 	var timeA = Date.parse(a.date);
                 	var timeB = Date.parse(b.date);
@@ -106,7 +110,15 @@
                 	return timeB - timeA
                 });
 
-                this.rssData = updatedRss.concat(this.rssData);
+                if (self.topic === '')
+                	this.rssData = updatedRss.concat(this.rssData);
+                else {
+                	updatedRss.forEach(item => {
+                		if (item['topic'] === self.topic)
+                			filteredTopicRss.push(item);
+                	});
+                	this.rssData = filteredTopicRss.concat(this.rssData);
+                }
             },
 
             onopen: function() {
