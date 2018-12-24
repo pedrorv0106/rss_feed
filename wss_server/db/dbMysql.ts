@@ -11,6 +11,7 @@ const Feed = sequelize.define('feed', {
   url: Sequelize.STRING,
   content: Sequelize.STRING,
   content_snippet: Sequelize.STRING,
+  topic: Sequelize.STRING,
   isodate: Sequelize.DATE,
   type: Sequelize.INTEGER,
 }, {
@@ -19,7 +20,7 @@ const Feed = sequelize.define('feed', {
 });
 Feed.sync();
 
-function insert_coindesk_rss(title, creator, url, content, content_snippet, isodate, type) {
+function insert_coindesk_rss(title, creator, url, content, content_snippet, topic, isodate, type) {
   var strContent = String(content);
   var strContentSnippet = String(content_snippet);
   
@@ -35,6 +36,7 @@ function insert_coindesk_rss(title, creator, url, content, content_snippet, isod
       url: url,
       content: strContent,
       content_snippet: strContentSnippet,
+      topic: topic,
       isodate: isodate,
       type: type,
   });

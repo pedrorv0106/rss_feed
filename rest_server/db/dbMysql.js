@@ -12,6 +12,7 @@ const Feed = sequelize.define('feed', {
     url: Sequelize.STRING,
     content: Sequelize.STRING,
     content_snippet: Sequelize.STRING,
+    topic: Sequelize.STRING,
     isodate: Sequelize.DATE,
     type: Sequelize.INTEGER,
 }, {
@@ -27,3 +28,15 @@ function get_latest_rss(limit) {
     });
 }
 exports.get_latest_rss = get_latest_rss;
+function get_latest_topic_rss(limit, topic) {
+    if (limit == 0)
+        limit = 100;
+    return Feed.findAll({
+        limit: limit,
+        where: {
+            topic: topic,
+        },
+        order: [['isodate', 'DESC']]
+    });
+}
+exports.get_latest_topic_rss = get_latest_topic_rss;

@@ -1,0 +1,11 @@
+#navigation-bar {
+    position: fixed;
+    margin-left: 20px;
+    width: 120px
+}
+
+#content {
+	margin-left: 170px;
+	margin-right: 10px;
+	margin-top: 50px;
+}

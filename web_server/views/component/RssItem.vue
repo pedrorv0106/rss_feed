@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <h3>{{rss['title']}}</h3>
-    <p>{{rss['from']}}</p>
-    <p>{{rss['date']}}</p>
-    <a :href="rss['url']" target='_blank'>{{rss['url']}}</a>
-  </div>
+	<tr>
+		<td>{{rss['date']}}</td>
+		<td>{{rss['topic']}}</td>
+		<td>
+			<a :href="rss['url']" target='_blank'>{{rss['title']}}</a>
+		</td>
+		<td>{{rss['from']}}</td>
+	</tr>
 </template>
 
 <script>

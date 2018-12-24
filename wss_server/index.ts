@@ -1,6 +1,7 @@
 import * as Parser from 'rss-parser';
 import * as dbMysql from './db/dbMysql';
 import * as WebSocket from 'ws';
+import * as moment from 'moment';
 
 var parserCoinDesk = new Parser();
 var parserCryptoCoin = new Parser();
@@ -28,6 +29,27 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
+function getTopic(categories) {
+	var value;
+	for (var i = 0; i < categories.length; i++) {
+        value = categories[i].toLowerCase();
+        if (value.includes('regulation'))
+            return "Regulation";
+        if (value.includes('adoption'))
+            return "Adoption";
+        if (value.includes('fraud'))
+            return "Fraud";
+        if (value.includes('ico'))
+            return "ICO";
+        if (value.includes('exchange'))
+            return "Exchange";
+        if (value.includes('mining'))
+            return "Mining";
+    }
+
+    return "";
+}
+
 async function getCoinDesk() {
 	console.log("Get CoinDesk FeedData");
   	parserCoinDesk.parseURL('https://www.coindesk.com/feed').then(async feed => {
@@ -45,15 +67,17 @@ async function getCoinDesk() {
 				if (latestDate >= itemDate)
 					return;
 			}
-		  	dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, item.isoDate, 1).catch(console.log);
-		  	newerItems[newerItems.length] = {
-		  		title: item.title,
-		  		url: item.link,
-		  		from: 'CoinDesk',
-		  		// creator: item.creator,
-		  		// content: item.content,
-		  		date: item.isoDate,
-		  	};
+		  	var topic = getTopic(item.categories);
+            dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 1).catch(console.log);
+            newerItems[newerItems.length] = {
+                title: item.title,
+                url: item.link,
+                from: 'CoinDesk',
+                topic: topic,
+                // creator: item.creator,
+                // content: item.content,
+                date: moment(item.isoDate).fromNow(),
+            };
 		});
 
 		if (newerItems.length > 0)
@@ -83,15 +107,17 @@ async function getCryptoCoin() {
 				if (latestDate >= itemDate)
 					return;
 			}
-		  	dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, item.isoDate, 2).catch(console.log);
-		  	newerItems[newerItems.length] = {
-		  		title: item.title,
-		  		url: item.link,
-		  		from: 'CryptoCoin',
-		  		// creator: item.creator,
-		  		// content: item.content,
-		  		date: item.isoDate,
-		  	};
+		  	var topic = getTopic(item.categories);
+            dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 2).catch(console.log);
+            newerItems[newerItems.length] = {
+                title: item.title,
+                url: item.link,
+                from: 'CryptoCoin',
+                topic: topic,
+                // creator: item.creator,
+                // content: item.content,
+                date: moment(item.isoDate).fromNow(),
+            };
 		});
 
 		if (newerItems.length > 0)
@@ -121,15 +147,17 @@ async function getEthereum() {
 				if (latestDate >= itemDate)
 					return;
 			}
-		  	dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, item.isoDate, 3).catch(console.log);
-		  	newerItems[newerItems.length] = {
-		  		title: item.title,
-		  		url: item.link,
-		  		from: 'Ethereum World',
-		  		// creator: item.creator,
-		  		// content: item.content,
-		  		date: item.isoDate,
-		  	};
+		  	var topic = getTopic(item.categories);
+            dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 3).catch(console.log);
+            newerItems[newerItems.length] = {
+                title: item.title,
+                url: item.link,
+                from: 'Ethereum World',
+                topic: topic,
+                // creator: item.creator,
+                // content: item.content,
+                date: moment(item.isoDate).fromNow(),
+            };
 		});
 
 		if (newerItems.length > 0)
@@ -159,15 +187,17 @@ async function getCoindoo() {
 				if (latestDate >= itemDate)
 					return;
 			}
-		  	dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, item.isoDate, 4).catch(console.log);
-		  	newerItems[newerItems.length] = {
-		  		title: item.title,
-		  		url: item.link,
-		  		from: 'Coindoo',
-		  		// creator: item.creator,
-		  		// content: item.content,
-		  		date: item.isoDate,
-		  	};
+		  	var topic = getTopic(item.categories);
+            dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 4).catch(console.log);
+            newerItems[newerItems.length] = {
+                title: item.title,
+                url: item.link,
+                from: 'Coindoo',
+                topic: topic,
+                // creator: item.creator,
+                // content: item.content,
+                date: moment(item.isoDate).fromNow(),
+            };
 		});
 
 		if (newerItems.length > 0)
@@ -197,15 +227,17 @@ async function getCointelegraph() {
 				if (latestDate >= itemDate)
 					return;
 			}
-		  	dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, item.isoDate, 5).catch(console.log);
-		  	newerItems[newerItems.length] = {
-		  		title: item.title,
-		  		url: item.link,
-		  		from: 'Cointelegraph',
-		  		// creator: item.creator,
-		  		// content: item.content,
-		  		date: item.isoDate,
-		  	};
+		  	var topic = getTopic(item.categories);
+            dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 5).catch(console.log);
+            newerItems[newerItems.length] = {
+                title: item.title,
+                url: item.link,
+                from: 'Cointelegraph',
+                topic: topic,
+                // creator: item.creator,
+                // content: item.content,
+                date: moment(item.isoDate).fromNow(),
+            };
 		});
 
 		if (newerItems.length > 0)
@@ -235,15 +267,17 @@ async function getCoinspeaker() {
 				if (latestDate >= itemDate)
 					return;
 			}
-		  	dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, item.isoDate, 6).catch(console.log);
-		  	newerItems[newerItems.length] = {
-		  		title: item.title,
-		  		url: item.link,
-		  		from: 'Coinspeaker',
-		  		// creator: item.creator,
-		  		// content: item.content,
-		  		date: item.isoDate,
-		  	};
+		  	var topic = getTopic(item.categories);
+            dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 6).catch(console.log);
+            newerItems[newerItems.length] = {
+                title: item.title,
+                url: item.link,
+                from: 'Coinspeaker',
+                topic: topic,
+                // creator: item.creator,
+                // content: item.content,
+                date: moment(item.isoDate).fromNow(),
+            };
 		});
 
 		if (newerItems.length > 0)
