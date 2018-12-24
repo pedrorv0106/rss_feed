@@ -110,11 +110,11 @@
                 	return timeB - timeA
                 });
 
-                if (self.topic === '')
+                if (this.topic === '')
                 	this.rssData = updatedRss.concat(this.rssData);
                 else {
                 	updatedRss.forEach(item => {
-                		if (item['topic'] === self.topic)
+                		if (item['topic'] === this.topic)
                 			filteredTopicRss.push(item);
                 	});
                 	this.rssData = filteredTopicRss.concat(this.rssData);
