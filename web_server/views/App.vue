@@ -102,7 +102,7 @@
 		sockets: {
             onmessage: function(msg) {
                 var updatedRss = JSON.parse(msg.data);
-                var filteredTopicRss;
+                var filteredTopicRss = [];
                 updatedRss.sort(function(a, b){
                 	var timeA = Date.parse(a.date);
                 	var timeB = Date.parse(b.date);
