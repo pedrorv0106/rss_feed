@@ -24,6 +24,32 @@ function getFromString(type) {
         return 'Cointelegraph';
     else if (type == 6)
         return 'Coinspeaker';
+    else if (type == 7)
+        return 'BitcoinCom';
+    else if (type == 8)
+        return 'NewsBTC';
+    else if (type == 9)
+        return 'WalletInvestor';
+    else if (type == 10)
+        return 'Reddit';
+    else if (type == 11)
+        return 'BitcoinMagazine';
+    else if (type == 12)
+        return 'Minergate';
+    else if (type == 13)
+        return 'Kraken';
+    else if (type == 14)
+        return 'FinanceMagnates';
+    else if (type == 15)
+        return 'Coinsutra';
+    else if (type == 16)
+        return 'Coingape';
+    else if (type == 17)
+        return 'Cryptopotato';
+    else if (type == 18)
+        return 'BitcoinExchange';
+    else if (type == 19)
+        return 'Reuters';
 }
 var preAction = function (req, res, next) {
     next();
@@ -33,8 +59,8 @@ router.get('/feed', preAction, function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         var resultArrs = [];
         var json_data = {
-            "status": 'ok',
-            "result": []
+            "status": 'success',
+            "data": []
         };
         try {
             var latestRss = yield dbMysql.get_latest_rss(0);
@@ -42,20 +68,25 @@ router.get('/feed', preAction, function (req, res) {
             for (var i = 0; i < latestRss.length; i++) {
                 from = getFromString(latestRss[i].type);
                 resultArrs[resultArrs.length] = {
-                    title: latestRss[i].title,
+                    headline: latestRss[i].title,
+                    description: latestRss[i].content,
                     url: latestRss[i].url,
-                    from: from,
+                    timestamp: latestRss[i].isodate,
+                    source: from,
+                    dbId: latestRss[i].id,
                     topic: latestRss[i].topic,
-                    // creator: latestRss[i].creator,
-                    // content: latestRss[i].content,
-                    date: moment(latestRss[i].isodate).fromNow(),
                 };
             }
-            json_data['result'] = resultArrs;
+            json_data['count'] = latestRss.length;
+            json_data['sources'] = 19;
+            json_data['oldestStory'] = (moment(new Date()).diff(latestRss[latestRss.length - 1].isodate) / (3600000)).toFixed(2) + ' Hours';
+            json_data['newestStory'] = (moment(new Date()).diff(latestRss[0].isodate) / (3600000)).toFixed(2) + ' Hours';
+            json_data['data'] = resultArrs;
         }
         catch (e) {
             console.log(e);
-            json_data['result'] = [];
+            json_data['status'] = "fail";
+            json_data['data'] = [];
         }
         res.send(json_data);
     });
@@ -79,20 +110,25 @@ router.post('/feed', preAction, function (req, res) {
             for (var i = 0; i < latestRss.length; i++) {
                 from = getFromString(latestRss[i].type);
                 resultArrs[resultArrs.length] = {
-                    title: latestRss[i].title,
+                    headline: latestRss[i].title,
+                    description: latestRss[i].content,
                     url: latestRss[i].url,
-                    from: from,
+                    timestamp: latestRss[i].isodate,
+                    source: from,
+                    dbId: latestRss[i].id,
                     topic: latestRss[i].topic,
-                    // creator: latestRss[i].creator,
-                    // content: latestRss[i].content,
-                    date: moment(latestRss[i].isodate).fromNow(),
                 };
             }
-            json_data['result'] = resultArrs;
+            json_data['count'] = latestRss.length;
+            json_data['sources'] = 19;
+            json_data['oldestStory'] = (moment(new Date()).diff(latestRss[latestRss.length - 1].isodate) / (3600000)).toFixed(2) + ' Hours';
+            json_data['newestStory'] = (moment(new Date()).diff(latestRss[0].isodate) / (3600000)).toFixed(2) + ' Hours';
+            json_data['data'] = resultArrs;
         }
         catch (e) {
             console.log(e);
-            json_data['result'] = [];
+            json_data['status'] = "fail";
+            json_data['data'] = [];
         }
         res.send(json_data);
     });

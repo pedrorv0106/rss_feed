@@ -78,8 +78,11 @@
 		      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		      xhr.onload = function () {
 		         var jsonData = JSON.parse(xhr.responseText)
-		         self.rssData = jsonData['result']
+		         self.rssData = jsonData['data']
 		         self.topic = ''
+		         self.rssData.forEach(item => {
+	                item.date = moment(item.timestamp).fromNow();
+	             });
 		      }
 		      xhr.send('limit=50')
 		    },
@@ -92,8 +95,11 @@
 		      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		      xhr.onload = function () {
 		         var jsonData = JSON.parse(xhr.responseText)
-		         self.rssData = jsonData['result']
+		         self.rssData = jsonData['data']
 		         self.topic = topic
+		         self.rssData.forEach(item => {
+	                item.date = moment(item.timestamp).fromNow();
+	             });
 		      }
 		      xhr.send('limit=50&topic=' + topic);
 		    }
@@ -103,22 +109,28 @@
             onmessage: function(msg) {
                 var updatedRss = JSON.parse(msg.data);
                 var filteredTopicRss = [];
-                updatedRss.sort(function(a, b){
-                	var timeA = Date.parse(a.date);
-                	var timeB = Date.parse(b.date);
-
-                	return timeB - timeA
-                });
-
+                var tempResult;
                 if (this.topic === '')
-                	this.rssData = updatedRss.concat(this.rssData);
+                	tempResult = updatedRss.concat(this.rssData);
                 else {
                 	updatedRss.forEach(item => {
                 		if (item['topic'] === this.topic)
                 			filteredTopicRss.push(item);
                 	});
-                	this.rssData = filteredTopicRss.concat(this.rssData);
+                	tempResult = filteredTopicRss.concat(this.rssData);
                 }
+
+                tempResult.sort(function(a, b){
+                	var timeA = Date.parse(a.timestamp);
+                	var timeB = Date.parse(b.timestamp);
+
+                	return timeB - timeA
+                });
+                tempResult.forEach(item => {
+                	item.date = moment(item.timestamp).fromNow();
+                });
+
+                this.rssData = tempResult;
             },
 
             onopen: function() {

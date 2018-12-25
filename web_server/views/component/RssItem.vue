@@ -3,9 +3,9 @@
 		<td>{{rss['date']}}</td>
 		<td>{{rss['topic']}}</td>
 		<td>
-			<a :href="rss['url']" target='_blank'>{{rss['title']}}</a>
+			<a :href="rss['url']" target='_blank'>{{rss['headline']}}</a>
 		</td>
-		<td>{{rss['from']}}</td>
+		<td>{{rss['source']}}</td>
 	</tr>
 </template>
 
