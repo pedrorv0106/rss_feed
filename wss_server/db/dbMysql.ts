@@ -53,7 +53,7 @@ function get_latest_rss(type) {
     where: {
       type: type,
     },
-    order: [['created_at', 'DESC']]
+    order: [['isodate', 'DESC']]
   });
 }
 
