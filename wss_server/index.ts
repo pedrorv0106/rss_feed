@@ -22,6 +22,14 @@ var parserCoingape = new Parser();
 var parserCryptopotato = new Parser();
 var parserBitcoinExchange = new Parser();
 var parserReuters = new Parser();
+var parserZycrypto = new Parser();
+var parserBitcoinist = new Parser();
+var parserEthereumNetw = new Parser();
+var parserCryptoAmb = new Parser();
+var parserCryptodailyuk = new Parser();
+var parserETHNews = new Parser();
+var parserBravenewcoin = new Parser();
+var parserConsenSys = new Parser();
 
 const wss = new WebSocket.Server({ port: 3001, path: '/feeds' });
 const MINS = 1000 * 60;
@@ -830,6 +838,326 @@ async function getReuters() {
   });
 }
 
+async function getZycrypto() {
+  console.log("Get Zycrypto FeedData");
+  parserZycrypto.parseURL('https://zycrypto.com/feed/').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(20);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 20).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'Zycrypto',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getZycrypto(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getZycrypto(), 1000);
+  });
+}
+
+async function getBitcoinist() {
+  console.log("Get Bitcoinist FeedData");
+  parserBitcoinist.parseURL('https://bitcoinist.com/feed/').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(21);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 21).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'Bitcoinist',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getBitcoinist(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getBitcoinist(), 1000);
+  });
+}
+
+async function getEthereumNetw() {
+  console.log("Get EthereumNetw FeedData");
+  parserEthereumNetw.parseURL('https://blog.ethereum.network/feed').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(22);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 22).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'EthereumNetw',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getEthereumNetw(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getEthereumNetw(), 1000);
+  });
+}
+
+async function getCryptoAmb() {
+  console.log("Get CryptoAmb FeedData");
+  parserCryptoAmb.parseURL('https://ambcrypto.com/feed').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(23);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 23).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'CryptoAmb',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getCryptoAmb(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getCryptoAmb(), 1000);
+  });
+}
+
+async function getCryptodailyuk() {
+  console.log("Get Cryptodailyuk FeedData");
+  parserCryptodailyuk.parseURL('https://cryptodaily.co.uk/feed/').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(24);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 24).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'Cryptodailyuk',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getCryptodailyuk(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getCryptodailyuk(), 1000);
+  });
+}
+
+async function getETHNews() {
+  console.log("Get ETHNews FeedData");
+  parserETHNews.parseURL('https://www.ethnews.com/rss.xml').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(25);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 25).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'ETHNews',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getETHNews(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getETHNews(), 1000);
+  });
+}
+
+async function getBravenewcoin() {
+  console.log("Get Bravenewcoin FeedData");
+  parserBravenewcoin.parseURL('https://bravenewcoin.com/news/rss').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(26);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 26).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'Bravenewcoin',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getBravenewcoin(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getBravenewcoin(), 1000);
+  });
+}
+
+async function getConsenSys() {
+  console.log("Get ConsenSys FeedData");
+  parserConsenSys.parseURL('https://media.consensys.net/feed').then(async feed => {
+    console.log(feed.title);
+
+    var latestRss = await dbMysql.get_latest_rss(27);
+    if (latestRss != null)
+      console.log(latestRss.isodate);
+
+    var newerItems = [];
+    feed.items.forEach(item => {
+      if (latestRss != null) {
+        var latestDate = Date.parse(latestRss.isodate);
+        var itemDate = Date.parse(item.isoDate);
+        if (latestDate >= itemDate)
+          return;
+      }
+      var topic = getTopic(item.categories);
+      dbMysql.insert_coindesk_rss(item.title, item.creator, item.link, item.content, item.content_snippet, topic, item.isoDate, 27).catch(console.log);
+      newerItems[newerItems.length] = {
+        headline: item.title,
+        description: item.content,
+        url: item.link,
+        timestamp: item.isoDate,
+        source: 'ConsenSys',
+        dbId: item.id,
+        topic: topic,
+      };
+    });
+
+    if (newerItems.length > 0)
+      wss.broadcast(JSON.stringify(newerItems));
+
+    setTimeout(() => getConsenSys(), MINS);
+  }, error => {
+    console.log(error);
+    setTimeout(() => getConsenSys(), 1000);
+  });
+}
+
 getCoinDesk();
 getCryptoCoin();
 getEthereum();
@@ -840,7 +1168,7 @@ getCoinspeaker();
 getBitcoinCom();
 getNewsBTC();
 getWalletInvestor();
-getReddit();
+// getReddit();
 getBitcoinMagazine();
 getMinergate();
 getKraken();
@@ -850,3 +1178,12 @@ getCoingape();
 getCryptopotato();
 getBitcoinExchange();
 getReuters();
+
+getZycrypto();
+getBitcoinist();
+getEthereumNetw();
+// getCryptoAmb();
+getCryptodailyuk();
+getETHNews();
+getBravenewcoin();
+getConsenSys();

@@ -50,6 +50,22 @@ function getFromString(type) {
         return 'BitcoinExchange';
     else if (type == 19)
         return 'Reuters';
+    else if (type == 20)
+        return 'Zycrypto';
+    else if (type == 21)
+        return 'Bitcoinist';
+    else if (type == 22)
+        return 'EthereumNetw';
+    else if (type == 23)
+        return 'CryptoAmb';
+    else if (type == 24)
+        return 'Cryptodailyuk';
+    else if (type == 25)
+        return 'ETHNews';
+    else if (type == 26)
+        return 'Bravenewcoin';
+    else if (type == 27)
+        return 'ConsenSys';
 }
 var preAction = function (req, res, next) {
     next();
