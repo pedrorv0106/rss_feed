@@ -1,5 +1,20 @@
 <template>
   <div>
+  	<div id="navigation-dropdown" class="dropdown">
+	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Topics
+	  	<span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    <li><a href="#" v-on:click='fetchData()'>All News</a></li>
+	    <li><a href="#" v-on:click="fetchTopicData('Regulation')">Regulation</a></li>
+	    <li><a href="#" v-on:click="fetchTopicData('Adoption')">Adoption</a></li>
+	    <li><a href="#" v-on:click="fetchTopicData('Fraud')">Fraud</a></li>
+	    <li><a href="#" v-on:click="fetchTopicData('ICO')">ICO</a></li>
+	    <li><a href="#" v-on:click="fetchTopicData('Exchange')">Exchange</a></li>
+	    <li><a href="#" v-on:click="fetchTopicData('Mining')">Mining</a></li>
+	  </ul>
+	</div>
+
     <div id="navigation-bar">
     	<ul class="list-group">
     		<li style="display:block;">
@@ -80,6 +95,7 @@
 		         var jsonData = JSON.parse(xhr.responseText)
 		         self.rssData = jsonData['data']
 		         self.topic = ''
+		         $("#navigation-dropdown button").html('All News <span class="caret"></span>')
 		         self.rssData.forEach(item => {
 	                item.date = moment(item.timestamp).fromNow();
 	             });
@@ -97,6 +113,7 @@
 		         var jsonData = JSON.parse(xhr.responseText)
 		         self.rssData = jsonData['data']
 		         self.topic = topic
+		         $("#navigation-dropdown button").html(topic + ' <span class="caret"></span>')
 		         self.rssData.forEach(item => {
 	                item.date = moment(item.timestamp).fromNow();
 	             });

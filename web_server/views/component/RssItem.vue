@@ -1,11 +1,11 @@
 <template>
 	<tr>
-		<td>{{rss['date']}}</td>
-		<td>{{rss['topic']}}</td>
-		<td>
+		<td data-label="Time">{{rss['date']}}</td>
+		<td data-label="Topics">{{rss['topic']}}</td>
+		<td data-label="Headline">
 			<a :href="rss['url']" target='_blank'>{{rss['headline']}}</a>
 		</td>
-		<td>{{rss['source']}}</td>
+		<td data-label="Source">{{rss['source']}}</td>
 	</tr>
 </template>
 
