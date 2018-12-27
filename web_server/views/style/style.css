@@ -1,27 +1,43 @@
-body {
-	background-color: #2f2f2f;
-	font-family: 'Roboto', sans-serif;
-}
-
 .list-group-item {
 	background-color: transparent;
 	border-color: 
 }
 
+.app-content {
+  overflow: overlay;
+}
+
+.feed-board {
+  display: none;
+  height: 100%;
+}
+
+.feed-loading{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+}
+
+.loader {
+  display: inline-flex;
+  margin: auto;
+}
+
 #navigation-bar {
-    position: fixed;
+    /*position: fixed;*/
     margin-left: 20px;
     width: 120px;
     color: white;
+    float: left;
 }
 
 #navigation-dropdown {
-	display: none;
-    position: fixed;
+	  display: none;
+    /*position: fixed;*/
+    margin-top: 10px;
     color: white;
     width: 100%;
-    top: 0px;
-    background-color: #3f3f3f;
 }
 
 #navigation-dropdown button {
@@ -34,8 +50,8 @@ body {
 
 #navigation-dropdown ul {
 	background-color: darkgray;
-    min-width: 120px;
-    left: calc(50% - 60px);
+  min-width: 120px;
+  left: calc(50% - 60px);
 }
 
 #navigation-bar a {
@@ -45,7 +61,7 @@ body {
 #content {
 	margin-left: 170px;
 	margin-right: 10px;
-	margin-top: 50px;
+  margin-top: 20px;
 	color: white;
 }
 
@@ -53,18 +69,27 @@ body {
 	color: white;	
 }
 
+#content table {
+  color: white;
+}
+
 @media screen and (max-width: 600px) {
   #navigation-bar {
   	display: none;
   }
 
+  .feed-board {
+    display: none;
+    height: 100%;
+  }
+
   #navigation-dropdown {
-	display: initial;
-}
+  	display: block;
+  }
 
   #content {
   	margin: 0px;
-  	margin-top: 50px;
+  	margin-top: 20px;
   }
 
   #content table {

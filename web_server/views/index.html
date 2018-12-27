@@ -1,18 +1,441 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>News Feed</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  </head>
-  <body>
+   <head>
+      <head>
+         <title>Avocado Terminal</title>
+         <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width,initial-scale=1">
+         <meta name="description" content="Data analytics, OTC and messenger for institutional cryptocurrency asset managers">
+         <meta name="keywords" content="avocado, blockchain big data, data analytics cryptocurrency, proof suite, avocado terminal, avocado reviews">
+         <meta name="author" content="proof">
+         <meta property="og:title" content="Avocado Terminal">
+         <meta property="og:description" content="Data analytics, OTC and messenger for institutional cryptocurrency asset managers">
+         <meta property="og:type" content="article">
+         <meta property="og:url" content="https://avocado.proofsuite.com/">
+         <meta property="og:image" content="https://avocado.proofsuite.com/avocado/images/screen3.png">
+         <meta content="https://avocado.proofsuite.com/avocado/images/screen3.png" name="twitter:image:src">
+         <meta content="Avocado by Proof" name="twitter:title">
+         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+         <script src="https://js.stripe.com/v3/"></script>
+         <style>
+           @font-face{
+             font-family: 'Gilroy-Light';
+             font-weight: 400;
+             font-style: normal;
+             src: local('Gilroy Light'), local('Gilroy-Light'), url(/fonts/Gilroy-Light.eot), url(/fonts/Gilroy-Light.eot?#iefix) format("embedded-opentype"), url(/fonts/Gilroy-Light.woff) format("woff"), url(/fonts/Gilroy-Light.ttf) format("truetype");
+           }
+
+           @font-face {
+             font-family: 'Catamaran';
+             font-style: normal;
+             font-weight: 400;
+             src: local('Catamaran Regular'), local('Catamaran-Regular'), url(/fonts/Catamaran-Regular.woff2) format('woff2'), url(/fonts/Catamaran-Regular.ttf) format("truetype");
+           }
+
+           @keyframes beat{
+             to { transform: scale(1.3); }
+           }
+
+           body {
+             background: #1f2641;
+             color: #fff;
+           }
+
+           * {
+             font-family: 'Catamaran';
+           }
+
+           #app:empty:after {
+             position: absolute;
+             top: 0;
+             right: 0;
+             bottom: 0;
+             left: 0;
+             margin: auto;
+             content: " ";
+             display: block;
+             background-image: url(/logo.svg);
+             background-position: center center;
+             background-size: 80px;
+             background-repeat: no-repeat;
+             animation: beat .25s infinite alternate;
+           }
+         </style>
+
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta name="author" content="ProofSuite">
+         <meta name="description" content="Avocado Terminal">
+         <script
+             src="https://code.jquery.com/jquery-3.3.1.min.js"
+             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+             crossorigin="anonymous"></script>
+         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+         <script>
+
+         var home_elements = [
+             ".amfeed_promo"
+         ]
+
+         var cur_elements = [
+             ".search_promo",
+             ".charting_promo",
+             ".sentiment_promo",
+             ".analysis_promo",
+             ".users_promo",
+             ".institutions_promo",
+             ".otc_promo",
+             ".support_promo",
+             ".profile_promo",
+             ".institution_promo",
+             ".multi_screen_promo"
+         ]
+
+         function disableElems(_extend){
+           if(_extend){
+             cur_elements = cur_elements.concat(home_elements)
+           }
+           for (let i = 0; i < cur_elements.length; i++){
+              $(cur_elements[i]).hide();
+           }
+         }
+
+         function toggleState(_label){
+             disableElems(true);
+             $(`.${_label}_promo`).show();
+         }
+
+             $(document).ready(()=>{
+               disableElems()
+
+               // Turned on Promo Pages
+
+               // Menu Controller
+
+               $(".Menu__menu__1Rj0q").hover(()=>{
+                 $(".Menu__menu__1Rj0q").addClass("Menu__expanded__2lWMl")
+               }, () =>{
+                 $(".Menu__menu__1Rj0q").removeClass("Menu__expanded__2lWMl")
+               })
+
+
+             })
+         </script>
+
+   </head>
+
+
+   <body>
+     <div id="app">
+     <div class="theme__theme__nS7Zx theme__ocean-blue__KV3l0">
+     <div class="Layout__content__o_502">
+     <div class="Menu__container__28Pcx">
+        <div class="Menu__menu__1Rj0q ">
+           <div class="Menu__content__2upJN">
+              <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                 <div class="MenuItem__link__icuac" onClick="toggleState('search')">
+                    <div class="MenuItem__content__2n6uV">
+                       <svg width="18px" height="18px" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle;">
+                          <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" style="fill: rgb(152, 166, 173);"></path>
+                       </svg>
+                       <div class="MenuItem__link-item__dbyIQ " >Search</div>
+                    </div>
+                 </div>
+              </div>
+              <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                 <a class="MenuItem__link__icuac" onClick="toggleState('charting')">
+                    <div class="MenuItem__content__2n6uV">
+                       <svg width="18px" height="18px" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle;">
+                          <path d="M496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM464 96H345.94c-21.38 0-32.09 25.85-16.97 40.97l32.4 32.4L288 242.75l-73.37-73.37c-12.5-12.5-32.76-12.5-45.25 0l-68.69 68.69c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L192 237.25l73.37 73.37c12.5 12.5 32.76 12.5 45.25 0l96-96 32.4 32.4c15.12 15.12 40.97 4.41 40.97-16.97V112c.01-8.84-7.15-16-15.99-16z" style="fill: rgb(152, 166, 173);"></path>
+                       </svg>
+                       <div class="MenuItem__link-item__dbyIQ " >Charting</div>
+                    </div>
+                 </a>
+              </div>
+              <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                 <a class="MenuItem__link__icuac" onClick="toggleState('sentiment')">
+                    <div class="MenuItem__content__2n6uV">
+                       <svg width="18px" height="18px" viewBox="0 0 448 512" style="display: inline-block; vertical-align: middle;">
+                          <path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z" style="fill: rgb(152, 166, 173);"></path>
+                       </svg>
+                       <div class="MenuItem__link-item__dbyIQ ">Sentiment</div>
+                    </div>
+                 </a>
+              </div>
+              <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                 <a class="MenuItem__link__icuac" onClick="toggleState('analysis')">
+                    <div class="MenuItem__content__2n6uV">
+                       <svg width="18px" height="18px" viewBox="0 0 576 512" style="display: inline-block; vertical-align: middle;">
+                          <path d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z" style="fill: rgb(152, 166, 173);"></path>
+                       </svg>
+                       <div class="MenuItem__link-item__dbyIQ ">Analysis</div>
+                    </div>
+                 </a>
+              </div>
+              <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                 <a class="MenuItem__link__icuac" onClick="toggleState('users')">
+                    <div class="MenuItem__content__2n6uV">
+                       <svg width="18px" height="18px" viewBox="0 0 640 512" style="display: inline-block; vertical-align: middle;">
+                          <path d="M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z" style="fill: rgb(152, 166, 173);"></path>
+                       </svg>
+                       <div class="MenuItem__link-item__dbyIQ ">Users</div>
+                    </div>
+                 </a>
+              </div>
+              <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                 <a class="MenuItem__link__icuac" onClick="toggleState('institutions')">
+                    <div class="MenuItem__content__2n6uV">
+                       <svg width="18px" height="18px" viewBox="0 0 640 512" style="display: inline-block; vertical-align: middle;">
+                          <path d="M616 192H480V24c0-13.26-10.74-24-24-24H312c-13.26 0-24 10.74-24 24v72h-64V16c0-8.84-7.16-16-16-16h-16c-8.84 0-16 7.16-16 16v80h-64V16c0-8.84-7.16-16-16-16H80c-8.84 0-16 7.16-16 16v80H24c-13.26 0-24 10.74-24 24v360c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V216c0-13.26-10.75-24-24-24zM128 404c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm128 192c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12V76c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 288c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40z" style="fill: rgb(152, 166, 173);"></path>
+                       </svg>
+                       <div class="MenuItem__link-item__dbyIQ ">Institutions</div>
+                    </div>
+                 </a>
+              </div>
+              <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                 <a class="MenuItem__link__icuac" onClick="toggleState('otc')">
+                    <div class="MenuItem__content__2n6uV">
+                       <svg width="18px" height="18px" viewBox="0 0 576 512" style="display: inline-block; vertical-align: middle;">
+                          <path d="M416 192c0-88.37-93.12-160-208-160S0 103.63 0 192c0 34.27 14.13 65.95 37.97 91.98C24.61 314.22 2.52 338.16 2.2 338.5A7.995 7.995 0 0 0 8 352c36.58 0 66.93-12.25 88.73-24.98C128.93 342.76 167.02 352 208 352c114.88 0 208-71.63 208-160zm-224 96v-16.29c-11.29-.58-22.27-4.52-31.37-11.35-3.9-2.93-4.1-8.77-.57-12.14l11.75-11.21c2.77-2.64 6.89-2.76 10.13-.73 3.87 2.42 8.26 3.72 12.82 3.72h28.11c6.5 0 11.8-5.92 11.8-13.19 0-5.95-3.61-11.19-8.77-12.73l-45-13.5c-18.59-5.58-31.58-23.42-31.58-43.39 0-24.52 19.05-44.44 42.67-45.07V96c0-4.42 3.58-8 8-8h16c4.42 0 8 3.58 8 8v16.29c11.29.58 22.27 4.51 31.37 11.35 3.9 2.93 4.1 8.77.57 12.14l-11.75 11.21c-2.77 2.64-6.89 2.76-10.13.73-3.87-2.43-8.26-3.72-12.82-3.72h-28.11c-6.5 0-11.8 5.92-11.8 13.19 0 5.95 3.61 11.19 8.77 12.73l45 13.5c18.59 5.58 31.58 23.42 31.58 43.39 0 24.53-19.05 44.44-42.67 45.07V288c0 4.42-3.58 8-8 8h-16c-4.42 0-8-3.58-8-8zm346.01 123.99C561.87 385.96 576 354.27 576 320c0-66.94-53.49-124.2-129.33-148.07.86 6.6 1.33 13.29 1.33 20.07 0 105.87-107.66 192-240 192-10.78 0-21.32-.77-31.73-1.88C207.8 439.63 281.77 480 368 480c40.98 0 79.07-9.24 111.27-24.98C501.07 467.75 531.42 480 568 480c3.2 0 6.09-1.91 7.34-4.84 1.27-2.94.66-6.34-1.55-8.67-.31-.33-22.42-24.24-35.78-54.5z" style="fill: rgb(152, 166, 173);"></path>
+                       </svg>
+                       <div class="MenuItem__link-item__dbyIQ ">OTC</div>
+                    </div>
+                 </a>
+              </div>
+              <div class="Menu__bottom__qmmXP">
+                 <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                    <div class="MenuItem__link__icuac" onClick="toggleState('support')">
+                       <div class="MenuItem__content__2n6uV">
+                          <svg width="18px" height="18px" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle;">
+                             <path d="M192 208c0-17.67-14.33-32-32-32h-16c-35.35 0-64 28.65-64 64v48c0 35.35 28.65 64 64 64h16c17.67 0 32-14.33 32-32V208zm176 144c35.35 0 64-28.65 64-64v-48c0-35.35-28.65-64-64-64h-16c-17.67 0-32 14.33-32 32v112c0 17.67 14.33 32 32 32h16zM256 0C113.18 0 4.58 118.83 0 256v16c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16v-16c0-114.69 93.31-208 208-208s208 93.31 208 208h-.12c.08 2.43.12 165.72.12 165.72 0 23.35-18.93 42.28-42.28 42.28H320c0-26.51-21.49-48-48-48h-32c-26.51 0-48 21.49-48 48s21.49 48 48 48h181.72c49.86 0 90.28-40.42 90.28-90.28V256C507.42 118.83 398.82 0 256 0z" style="fill: rgb(152, 166, 173);"></path>
+                          </svg>
+                          <div class="MenuItem__link-item__dbyIQ ">Support</div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                    <a class="MenuItem__link__icuac" onClick="toggleState('profile')">
+                       <div class="MenuItem__content__2n6uV">
+                          <svg width="18px" height="18px" viewBox="0 0 496 512" style="display: inline-block; vertical-align: middle;">
+                             <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z" style="fill: rgb(152, 166, 173);"></path>
+                          </svg>
+                          <div class="MenuItem__link-item__dbyIQ ">Profile</div>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                    <a class="MenuItem__link__icuac" onClick="toggleState('institution')">
+                       <div class="MenuItem__content__2n6uV">
+                          <svg width="18px" height="18px" viewBox="0 0 448 512" style="display: inline-block; vertical-align: middle;">
+                             <path d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z" style="fill: rgb(152, 166, 173);"></path>
+                          </svg>
+                          <div class="MenuItem__link-item__dbyIQ ">Institution</div>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="MenuItem__container__3jWsk MenuItem__container--hover__1G0rX">
+                    <div class="MenuItem__link__icuac">
+                       <div class="MenuItem__content__2n6uV">
+                          <svg width="18px" height="18px" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle;">
+                             <path d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z" style="fill: rgb(152, 166, 173);"></path>
+                          </svg>
+                          <div class="MenuItem__link-item__dbyIQ ">LogIn</div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="Layout__main__3QN5t">
+     <div class="Header__container__RZFjx">
+        <div class="Header__main__-tI_1">
+           <h1><a onClick="toggleState('amfeed')">Avocado</a></h1>
+           <a class="Header__button__3howy" onClick="toggleState('charting')">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z" style="fill: rgb(85, 85, 85);"></path>
+                 </svg>
+              </button>
+           </a>
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 448 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z" style="fill: rgb(230, 230, 230);"></path>
+                 </svg>
+              </button>
+           </div>
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 1024 1024" style="display: inline-block; vertical-align: middle;">
+                    <path d="M854 128c24 0 42 18 42 42v256c0 24-18 44-42 44h-726c-24 0-42-20-42-44v-256c0-24 18-42 42-42h726zM854 554c24 0 42 20 42 44v256c0 24-18 42-42 42h-726c-24 0-42-18-42-42v-256c0-24 18-44 42-44h726z" style="fill: rgb(85, 85, 85);"></path>
+                 </svg>
+              </button>
+           </div>
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M296 32h192c13.255 0 24 10.745 24 24v160c0 13.255-10.745 24-24 24H296c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24zm-80 0H24C10.745 32 0 42.745 0 56v160c0 13.255 10.745 24 24 24h192c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24zM0 296v160c0 13.255 10.745 24 24 24h192c13.255 0 24-10.745 24-24V296c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm296 184h192c13.255 0 24-10.745 24-24V296c0-13.255-10.745-24-24-24H296c-13.255 0-24 10.745-24 24v160c0 13.255 10.745 24 24 24z" style="fill: rgb(85, 85, 85);"></path>
+                 </svg>
+              </button>
+           </div>
+        </div>
+        <div class="Header__ticker__3t1g3">
+           <div class="Ticker__container__NUAEf">
+              <div class="Ticker__marquee__HEwP8">
+                 <ul class="Ticker__list__Oz9vI">
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-moves-moelis-shareholderactivism/moelis-hires-from-blackrock-hedge-fund-for-activist-defense-team-idUSKBN1O21LK?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Moelis hires from BlackRock, hedge fund for activist defense team</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369866" target="_blank">Overstock Venture Chief Expects Market for Blockchain Products in 2019</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/britain-stocks-factors/uk-stocks-factors-to-watch-on-dec-14-idUSL3N1YJ20G?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UK Stocks-Factors to watch on Dec 14</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/britain-stocks-factors/uk-stocks-factors-to-watch-on-dec-14-idUSL3N1YJ20G?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UK Stocks-Factors to watch on Dec 14</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-investment-mutualfunds-lipper/record-46-billion-pulled-from-u-s-based-stock-funds-in-latest-week-lipper-idUSKBN1OC31I?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Record $46 billion pulled from U.S.-based stock funds in latest week: Lipper</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-column-miller-socialsecurity/a-higher-social-security-retirement-age-comes-with-risks-for-many-workers-idUSKBN1OC2BV?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">A higher Social Security retirement age comes with risks for many workers</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=368540" target="_blank">Crypto 2018 Was a Tale Told By An Idiot –&nbsp;But It Doesn’t Have to Signify Nothing</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369969" target="_blank">Major German Stock Exchange to Launch Crypto Trading Platform</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369939" target="_blank">South Korea’s Kakao Leads $15 Million Raise for Public Blockchain Startup Orbs</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/japan-stocks-close/nikkei-falls-as-china-data-boj-tankan-outlook-dent-mood-idUSL3N1YJ2M4?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Nikkei falls as China data, BOJ tankan outlook dent mood</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-hedgefunds-greenlight/losses-at-einhorns-hedge-fund-greenlight-grow-in-november-idUSKCN1O02X5?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Losses at Einhorn's hedge fund Greenlight grow in November</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-oil/oil-prices-dip-but-expectations-of-tightening-supply-support-idUSL3N1YJ17R?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Oil prices dip, but expectations of tightening supply support</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-usa-mutualfunds-ici/u-s-fund-investors-compound-pain-for-bond-markets-idUSKBN1OB2E8?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">U.S. fund investors compound pain for bond markets</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369818" target="_blank">Ethereum’s Geth Software Upgrades Ahead of January Hard Fork</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-markets/global-markets-asian-shares-jolted-by-weak-chinese-data-growth-risks-idUSL3N1YJ1KW?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">GLOBAL MARKETS-Asian shares jolted by weak Chinese data, growth risks</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-precious/precious-gold-prices-steady-on-fed-policy-outlook-uncertainty-idUSL3N1YJ192?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">PRECIOUS-Gold prices steady on Fed policy outlook uncertainty</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/china-economy-property-investment/update-1-china-nov-property-investment-rises-but-soft-sales-signal-problems-idUSL3N1YJ1KE?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 1-China Nov property investment rises but soft sales signal problems</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369895" target="_blank">Blockstack Won’t Need to Sell Bitcoin or Ether to Survive Crypto Winter</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-markets-2019outlook/column-trump-fires-fed-chief-no-brexit-dont-rule-anything-out-in-2019-mcgeever-idUSL8N1YI3HP?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">COLUMN-Trump fires Fed chief? No Brexit? Don't rule anything out in 2019: McGeever</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/japan-stocks-close/nikkei-falls-as-china-data-boj-tankan-outlook-dent-mood-idUSL3N1YJ2M4?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Nikkei falls as China data, BOJ tankan outlook dent mood</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369874" target="_blank">Report: Venezuela Is Forcibly Converting Pension Balances to the Petro</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/press-digest-nyt/press-digest-new-york-times-business-news-dec-14-idUSL3N1YJ2JO?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">PRESS DIGEST-New York Times business news - Dec 14</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-wells-fargo-fed-warren/wells-fargo-wont-be-allowed-to-grow-unless-problems-fixed-feds-powell-idUSKBN1O92CP?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Wells Fargo won't be allowed to grow unless problems fixed: Fed's Powell</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-wells-fargo-workers/employee-rights-group-says-wells-fargo-declined-planned-meeting-idUSKBN1O527W?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Employee rights group says Wells Fargo declined planned meeting</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-markets/global-markets-asian-shares-jolted-by-grim-chinese-data-growth-risks-idUSL3N1YJ2KE?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">GLOBAL MARKETS-Asian shares jolted by grim Chinese data, growth risks</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-markets-2019outlook/column-trump-fires-fed-chief-no-brexit-dont-rule-anything-out-in-2019-mcgeever-idUSL8N1YI3HP?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">COLUMN-Trump fires Fed chief? No Brexit? Don't rule anything out in 2019: McGeever</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-markets/global-markets-asian-shares-jolted-by-weak-chinese-data-growth-risks-idUSL3N1YJ1KW?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">GLOBAL MARKETS-Asian shares jolted by weak Chinese data, growth risks</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-energy-funds-brenham/equities-fund-brenham-capital-to-shut-as-energy-stocks-plunge-idUSKCN1NZ275?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Equities fund Brenham Capital to shut as energy stocks plunge</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-oil/update-3-oil-prices-drop-amid-china-economy-worries-but-output-cuts-support-idUSL3N1YJ1H4?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 3-Oil prices drop amid China economy worries, but output cuts support</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-usa-court-fraud/u-s-top-court-signals-it-will-buttress-anti-fraud-securities-laws-idUSKBN1O226G?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">U.S. top court signals it will buttress anti-fraud securities laws</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369608" target="_blank">A Built-In Ethereum Wallet Just Got Added to Opera’s Browser</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/china-economy-property-investment/update-1-china-nov-property-investment-rises-but-soft-sales-signal-problems-idUSL3N1YJ1KE?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 1-China Nov property investment rises but soft sales signal problems</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/blackstone-group-india/time-is-right-to-bet-big-on-india-says-blackstones-schwarzman-et-idUSL3N1YJ2EY?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Time is right to bet big on India, says Blackstone's Schwarzman-ET</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/japan-stocks-midday/nikkei-falls-as-large-caps-sold-boj-tankan-outlook-adds-to-concern-idUSL3N1YJ1QW?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Nikkei falls as large caps sold; BOJ tankan outlook adds to concern</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/japan-economy-tankan/update-2-japans-business-mood-capex-steady-but-outlook-sours-boj-tankan-idUSL3N1YI1SO?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 2-Japan's business mood, capex steady but outlook sours - BOJ tankan</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/huawei-europe-germany/deutsche-telekom-reviews-vendors-in-light-of-china-security-debate-idUSFWN1YI0WT?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Deutsche Telekom reviews vendors in light of China security debate</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/apple-qualcomm-china/apple-china-says-it-will-push-software-update-in-bid-to-resolve-qualcomm-case-idUSB9N1NF01S?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Apple China says it will push software update in bid to resolve Qualcomm case</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-funds-doubleline-gundlach/doublelines-gundlach-says-sp-500-likely-to-go-below-february-2018-lows-idUSKBN1OA2KK?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">DoubleLine's Gundlach says S&amp;P 500 likely to go below February 2018 lows</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=370043" target="_blank">Binance Is Expanding Its Crypto Incubator to 5 New Cities</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369413" target="_blank">Violent Delights Lead to Violent Ends: Rebuilding After the Crypto Crash</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-precious/precious-gold-prices-steady-on-fed-policy-outlook-uncertainty-idUSL3N1YJ192?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">PRECIOUS-Gold prices steady on Fed policy outlook uncertainty</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/japan-stocks-midday/nikkei-falls-as-large-caps-sold-boj-tankan-outlook-adds-to-concern-idUSL3N1YJ1QW?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Nikkei falls as large caps sold; BOJ tankan outlook adds to concern</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/japan-economy-tankan/update-2-japans-business-mood-capex-steady-but-outlook-sours-boj-tankan-idUSL3N1YI1SO?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 2-Japan's business mood, capex steady but outlook sours - BOJ tankan</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/press-digest-wsj/press-digest-wall-street-journal-dec-14-idUSL3N1YJ2IY?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">PRESS DIGEST - Wall Street Journal - Dec 14</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/huawei-europe-germany/update-1-deutsche-telekom-reviews-vendors-in-light-of-china-security-debate-idUSL8N1YJ0OL?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 1-Deutsche Telekom reviews vendors in light of China security debate</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-world-work-cancer/can-better-cancer-care-lower-companys-health-costs-idUSKBN1O212D?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Can better cancer care lower company's health costs?</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/apple-qualcomm-china/update-1-apple-to-push-software-update-in-china-as-qualcomm-case-threatens-sales-ban-idUSL3N1YJ24D?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 1-Apple to push software update in China as Qualcomm case threatens sales ban</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-money-firstjobs-philanthropists/first-steps-towards-a-life-of-giving-back-idUSKBN1O41FD?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">First steps towards a life of giving back</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-funds-doubleline/doublelines-gundlach-says-treasuries-point-to-economy-ready-to-weaken-idUSKBN1O3244?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">DoubleLine's Gundlach says Treasuries point to economy ready to weaken</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-oil/update-3-oil-prices-drop-amid-china-economy-worries-but-output-cuts-support-idUSL3N1YJ1H4?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 3-Oil prices drop amid China economy worries, but output cuts support</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-global-markets-speculators-column/struggling-hedge-funds-cling-to-dollar-u-s-yield-curve-bets-mcgeever-idUSKBN1OA16R?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Struggling hedge funds cling to dollar, U.S. yield curve bets: McGeever</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369837" target="_blank">Deutsche Telekom, Alibaba Cloud, Citi Join Hyperledger Blockchain Project</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-oil/oil-prices-dip-but-expectations-of-tightening-supply-support-idUSL3N1YJ17R?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Oil prices dip, but expectations of tightening supply support</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=370008" target="_blank">Gaming PC Maker Razer Offers Store Credit in Return for Crypto Mining</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=370025" target="_blank">Former Apple Exec Joins Decentralized Identity Startup Civic</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369976" target="_blank">UAE Remittance Firm Launching Ripple-Based Payments in Q1 2019</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-stanchart-india-redundancies/standard-chartered-axes-over-200-jobs-in-india-source-idUSKBN1OC2HI?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Standard Chartered axes over 200 jobs in India: source</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/apple-qualcomm-china/apple-china-says-it-will-push-software-update-in-bid-to-resolve-qualcomm-case-idUSB9N1NF01S?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Apple China says it will push software update in bid to resolve Qualcomm case</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/apple-qualcomm-china/update-1-apple-to-push-software-update-in-china-as-qualcomm-case-threatens-sales-ban-idUSL3N1YJ24D?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 1-Apple to push software update in China as Qualcomm case threatens sales ban</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/new-jersey-truck-money/no-free-money-in-new-jersey-police-want-spilled-banknotes-back-idUSL1N1YJ003?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">No free money in New Jersey: Police want spilled banknotes back</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/new-jersey-truck-money/no-free-money-in-new-jersey-police-want-spilled-banknotes-back-idUSL1N1YJ003?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">No free money in New Jersey: Police want spilled banknotes back</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=370108" target="_blank">Basis Stablecoin Confirms Shutdown, Blaming ‘Regulatory Constraints’</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/europe-vehicleregistrations/european-passenger-car-sales-fall-8-1-percent-in-november-idUSF9N1W0001?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">European passenger car sales fall 8.1 percent in November</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/huawei-europe-germany/deutsche-telekom-reviews-vendors-in-light-of-china-security-debate-idUSFWN1YI0WT?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Deutsche Telekom reviews vendors in light of China security debate</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-blackrock-bonds-outlook/blackrocks-rieder-buying-longer-term-bonds-as-fed-pause-seems-likely-idUSKBN1O527G?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">BlackRock's Rieder buying longer-term bonds as Fed pause seems likely</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/blackstone-group-india/time-is-right-to-bet-big-on-india-says-blackstones-schwarzman-et-idUSL3N1YJ2EY?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">Time is right to bet big on India, says Blackstone's Schwarzman-ET</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/europe-vehicleregistrations/european-passenger-car-sales-fall-8-1-percent-in-november-idUSF9N1W0001?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">European passenger car sales fall 8.1 percent in November</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-investment-mutualfunds-lipper/u-s-mutual-fund-sales-signal-retail-investor-caution-idUSKCN1NY2OX?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">U.S. mutual fund sales signal retail investor caution</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/global-markets/global-markets-asian-shares-jolted-by-grim-chinese-data-growth-risks-idUSL3N1YJ2KE?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">GLOBAL MARKETS-Asian shares jolted by grim Chinese data, growth risks</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369999" target="_blank">Bitcoin Price Consolidates Sub-$3.5K With Bulls and Bears in Stalemate</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369894" target="_blank">US Lawmaker Suggests ‘WallCoin’ Crypto to Fund Trump’s Mexico Border Wall</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=370191" target="_blank">SEC’s Crypto Czar Signals Some Flexibility on Token Offerings</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369917" target="_blank">Former AriseBank Execs Settle Charges in SEC ICO Fraud Lawsuit</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/huawei-europe-germany/update-1-deutsche-telekom-reviews-vendors-in-light-of-china-security-debate-idUSL8N1YJ0OL?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">UPDATE 1-Deutsche Telekom reviews vendors in light of China security debate</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-column-miller-medicare/medicare-advantage-plans-get-unfair-push-from-u-s-government-critics-idUSKBN1O621T?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Medicare Advantage plans get unfair push from U.S. government: critics</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/press-digest-wsj/press-digest-wall-street-journal-dec-14-idUSL3N1YJ2IY?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">PRESS DIGEST - Wall Street Journal - Dec 14</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.coindesk.com/?p=369904" target="_blank">STO Services Startup TokenSoft Acquires Stake in Regulated Broker-Dealer</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-markets-flows-baml/investors-flee-bonds-and-stocks-in-turbulent-week-for-growth-and-trade-idUSKBN1O61TY?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">Investors flee bonds and stocks in turbulent week for growth and trade</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/press-digest-nyt/press-digest-new-york-times-business-news-dec-14-idUSL3N1YJ2JO?feedType=RSS&amp;amp;feedName=companyNews" target="_blank">PRESS DIGEST-New York Times business news - Dec 14</a></li>
+                    <li class="Ticker__item__CJXdb"><a href="https://www.reuters.com/article/us-world-work-jobanniversaries/in-a-tight-labor-market-companies-bet-big-on-five-year-rewards-idUSKBN1O916B?feedType=RSS&amp;amp;feedName=PersonalFinance" target="_blank">In a tight labor market, companies bet big on five-year rewards</a></li>
+                 </ul>
+              </div>
+           </div>
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 448 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z" style="fill: rgb(230, 230, 230);"></path>
+                 </svg>
+              </button>
+           </div>
+        </div>
+        <div class="Header__right__3c4dd">
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M192 208c0-17.67-14.33-32-32-32h-16c-35.35 0-64 28.65-64 64v48c0 35.35 28.65 64 64 64h16c17.67 0 32-14.33 32-32V208zm176 144c35.35 0 64-28.65 64-64v-48c0-35.35-28.65-64-64-64h-16c-17.67 0-32 14.33-32 32v112c0 17.67 14.33 32 32 32h16zM256 0C113.18 0 4.58 118.83 0 256v16c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16v-16c0-114.69 93.31-208 208-208s208 93.31 208 208h-.12c.08 2.43.12 165.72.12 165.72 0 23.35-18.93 42.28-42.28 42.28H320c0-26.51-21.49-48-48-48h-32c-26.51 0-48 21.49-48 48s21.49 48 48 48h181.72c49.86 0 90.28-40.42 90.28-90.28V256C507.42 118.83 398.82 0 256 0z" style="fill: rgb(85, 85, 85);"></path>
+                 </svg>
+              </button>
+           </div>
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 448 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M312 320h136V56c0-13.3-10.7-24-24-24H24C10.7 32 0 42.7 0 56v400c0 13.3 10.7 24 24 24h264V344c0-13.2 10.8-24 24-24zm129 55l-98 98c-4.5 4.5-10.6 7-17 7h-6V352h128v6.1c0 6.3-2.5 12.4-7 16.9z" style="fill: rgb(85, 85, 85);"></path>
+                 </svg>
+              </button>
+           </div>
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 576 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z" style="fill: rgb(85, 85, 85);"></path>
+                 </svg>
+              </button>
+           </div>
+           <div class="Header__button__3howy">
+              <button class="Button__button__2Urs7" color="#98a6ad" type="button">
+                 <svg width="18px" height="18px" viewBox="0 0 448 512" style="display: inline-block; vertical-align: middle;">
+                    <path d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z" style="fill: rgb(85, 85, 85);"></path>
+                 </svg>
+              </button>
+           </div>
+        </div>
+     </div>
+     <!-- <div class="Layout__main__3QN5t"> -->
+     <div class="Page__container__1Wqcc">
+     <main class="Page__content__1bjAU">
+     <div class="ChartLoadingScreen__container__32n1Q">
+     <ul class="ChartLoadingScreen__screens__32Nl1">
+     <li> <!-- Spacer -->
+
+  <div class="Screen__container__39o1O"> <!-- Populate with Promotional Sites -->
+    <div class = "search_promo"> Search Promo </div>
+    <div class = "charting_promo"> Charting Promo</div>
+    <div class = "sentiment_promo"> Sentiment Promo </div>
+    <div class = "analysis_promo"> Analysis Promo</div>
+    <div class = "users_promo"> User Promo</div>
+    <div class = "institutions_promo"> Institutions Promo </div>
+    <div class = "otc_promo"> OTC Promo </div>
+    <div class = "support_promo"> Support Promo </div>
+    <div class = "profile_promo">Profile Promo</div>
+    <div class = "institution_promo">Institution Promo </div>
+    <div class = "multi_screen_promo"> Multi Screen Promo </div>
+
     <app></app>
-    <script src="/main.js" type="text/javascript"></script>
-  </body>
+
+  </div>
+
+
+</li>
+<script src="/main.js" type="text/javascript"></script>
+</body>
+
 </html>

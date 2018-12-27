@@ -1,5 +1,9 @@
 <template>
-  <div>
+ <div class="app-content">
+  <div class="feed-loading">
+  	<div class="loader"> </div>
+  </div>
+  <div class="feed-board">
   	<div id="navigation-dropdown" class="dropdown">
 	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Topics
 	  	<span class="caret"></span>
@@ -65,10 +69,12 @@
 		</table>
 	</div>
   </div>
+</div>
 </template>
 
 <script>
 	import RssItem from './component/RssItem.vue'
+	import Global from './global.js'
 	export default {
 		name: 'app',
 
@@ -87,36 +93,48 @@
 		    fetchData: function () {
 		      var xhr = new XMLHttpRequest()
 		      var self = this
-		      var apiURL = 'http://18.191.245.20:3000/news/feed'
-		      // var apiURL = 'http://localhost:3000/news/feed'
-		      xhr.open('POST', apiURL)
+		      
+		      $('.feed-board').css('display', 'none');
+			  $('.feed-loading').css('display', "flex");
+			  	      
+		      xhr.open('POST', Global.API_URL)
 		      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		      xhr.onload = function () {
 		         var jsonData = JSON.parse(xhr.responseText)
 		         self.rssData = jsonData['data']
 		         self.topic = ''
-		         $("#navigation-dropdown button").html('All News <span class="caret"></span>')
 		         self.rssData.forEach(item => {
 	                item.date = moment(item.timestamp).fromNow();
 	             });
+	             setTimeout(() => {
+	             	$("#navigation-dropdown button").html('All News <span class="caret"></span>')
+		         	$('.feed-board').css('display', 'block');
+				 	$('.feed-loading').css('display', "none");
+	             }, 1000);
 		      }
 		      xhr.send('limit=50')
 		    },
 		    fetchTopicData: function (topic) {
 		      var xhr = new XMLHttpRequest()
 		      var self = this
-		      var apiURL = 'http://18.191.245.20:3000/news/feed'
-		      // var apiURL = 'http://localhost:3000/news/feed'
-		      xhr.open('POST', apiURL)
+
+		      $('.feed-board').css('display', 'none');
+			  $('.feed-loading').css('display', "flex");
+			  
+		      xhr.open('POST', Global.API_URL)
 		      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		      xhr.onload = function () {
 		         var jsonData = JSON.parse(xhr.responseText)
 		         self.rssData = jsonData['data']
 		         self.topic = topic
-		         $("#navigation-dropdown button").html(topic + ' <span class="caret"></span>')
 		         self.rssData.forEach(item => {
 	                item.date = moment(item.timestamp).fromNow();
 	             });
+	             setTimeout(() => {
+	             	$("#navigation-dropdown button").html(topic + ' <span class="caret"></span>')
+		         	$('.feed-board').css('display', 'block');
+				 	$('.feed-loading').css('display', "none");
+	             }, 1000);
 		      }
 		      xhr.send('limit=50&topic=' + topic);
 		    }
