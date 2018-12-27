@@ -108,7 +108,7 @@
 	             });
 	             setTimeout(() => {
 	             	$("#navigation-dropdown button").html('All News <span class="caret"></span>')
-		         	$('.feed-board').css('display', 'block');
+		         	$('.feed-board').css('display', 'flex');
 				 	$('.feed-loading').css('display', "none");
 	             }, 1000);
 		      }
@@ -132,7 +132,7 @@
 	             });
 	             setTimeout(() => {
 	             	$("#navigation-dropdown button").html(topic + ' <span class="caret"></span>')
-		         	$('.feed-board').css('display', 'block');
+		         	$('.feed-board').css('display', 'flex');
 				 	$('.feed-loading').css('display', "none");
 	             }, 1000);
 		      }

@@ -1,22 +1,43 @@
 .list-group-item {
 	background-color: transparent;
-	border-color: 
 }
 
 .app-content {
+  --axis: #4d7384;
+  --green-light: #7bcc3a;
+  --green-mint: #7bcc3a;
+  --green-mint-light: #7bcc3a;
+  --green-neon: #7bcc3a;
+  --red-chilli: #f74b4b;
+  --red-desire: #f74b4b;
+  --red-desire-light: #f74b4b;
+  --blue-royal: #435966;
+  --active: #98c0cc;
+  --main-bg: #112027;
+  --second-bg: #0f1315;
+  --third-bg: #005068;
+  --fourth-bg: #181819;
+  --text: #e6e6e6;
+  --text-second: #488286;
+  --border: #164865;
+  --hover: #254954; 
+
   overflow: overlay;
+  background: var(--main-bg);
+  font-size: 12px;
+  font-family: 'Catamaran', sans-serif;
+  height: 100%;
 }
 
 .feed-board {
   display: none;
-  height: 100%;
 }
 
 .feed-loading{
   display: flex;
   align-items: center;
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 
 .loader {
@@ -25,7 +46,6 @@
 }
 
 #navigation-bar {
-    /*position: fixed;*/
     margin-left: 20px;
     width: 120px;
     color: white;
@@ -34,7 +54,6 @@
 
 #navigation-dropdown {
 	  display: none;
-    /*position: fixed;*/
     margin-top: 10px;
     color: white;
     width: 100%;
@@ -46,6 +65,8 @@
 	border-color: gray;
 	display: block;
 	background-color: transparent;
+  font-size: 12px;
+  font-family: 'Catamaran', sans-serif;
 }
 
 #navigation-dropdown ul {
@@ -54,23 +75,27 @@
   left: calc(50% - 60px);
 }
 
-#navigation-bar a {
-    color: white;
+#navigation-bar a, h3 {
+  color: white;
+  font-size: 12px;
+  font-family: 'Catamaran', sans-serif;
 }
 
 #content {
-	margin-left: 170px;
-	margin-right: 10px;
-  margin-top: 20px;
-	color: white;
+	margin-left: 10px;
+  margin-right: 20px;
+  flex: 1;
+  color: white;
 }
 
 #content a {
 	color: white;	
 }
 
-#content table {
+#content table, h1 {
   color: white;
+  font-size: 12px;
+  font-family: 'Catamaran', sans-serif;
 }
 
 @media screen and (max-width: 600px) {
@@ -79,7 +104,7 @@
   }
 
   .feed-board {
-    display: none;
+    flex-direction: column;
     height: 100%;
   }
 
@@ -89,7 +114,6 @@
 
   #content {
   	margin: 0px;
-  	margin-top: 20px;
   }
 
   #content table {
@@ -131,10 +155,6 @@
   }
   
   #content table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
     content: attr(data-label);
     float: left;
     font-weight: bold;
