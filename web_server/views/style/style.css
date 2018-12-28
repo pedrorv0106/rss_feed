@@ -102,6 +102,10 @@
   font-family: 'Catamaran', sans-serif;
 }
 
+#content table td, th {
+  border-color: var(--third-bg);
+}
+
 #content table thead {
   background-color: var(--blue-royal);
 }
