@@ -56,6 +56,10 @@
     background-color: var(--border);
 }
 
+#navigation-bar ul li {
+  border-color: var(--axis);
+}
+
 #navigation-dropdown {
 	  display: none;
     margin-top: 10px;
@@ -102,12 +106,17 @@
   font-family: 'Catamaran', sans-serif;
 }
 
-#content table td, th {
+#content table td, #content table th {
   border-color: var(--third-bg);
 }
 
 #content table thead {
   background-color: var(--blue-royal);
+  border-color: var(--third-bg);
+}
+
+#content table {
+  border-color: var(--third-bg);
 }
 
 #content table tbody tr:nth-child(even) {
@@ -168,7 +177,7 @@
   }
   
   #content table tr {
-    border-bottom: 3px solid #ddd;
+    border-bottom: 3px solid #756b6b;
     display: block;
     /*margin-bottom: .625em;*/
   }
