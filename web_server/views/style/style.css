@@ -111,7 +111,7 @@
 }
 
 #content table thead {
-  background-color: var(--blue-royal);
+  background-color: var(--hover);
   border-color: var(--third-bg);
 }
 
@@ -128,7 +128,7 @@
 }
 
 #content table tbody tr:hover {
-  background-color: var(--hover);
+  background-color: var(--blue-royal);
 }
 
 #content table tbody td[data-label=Topics] {
