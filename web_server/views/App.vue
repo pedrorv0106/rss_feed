@@ -20,8 +20,8 @@
 	</div>
 
     <div id="navigation-bar">
-    	<ul class="list-group">
-    		<li style="display:block;">
+    	<!-- <ul class="list-group">
+    		<li style="display:block;"> -->
     			<h3>Topics</h3>
     			<ul class="list-group">
     				<li class="list-group-item">
@@ -46,8 +46,8 @@
     					<a href='#' v-on:click="fetchTopicData('Mining')">Mining</a>
     				</li>
     			</ul>
-    		</li>
-    	</ul>
+    	<!-- 	</li>
+    	</ul> -->
     </div>
     <div id="content">
     	<h1>News Feed</h1>

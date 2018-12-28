@@ -52,6 +52,10 @@
     float: left;
 }
 
+#navigation-bar ul {
+    background-color: var(--border);
+}
+
 #navigation-dropdown {
 	  display: none;
     margin-top: 10px;
@@ -98,6 +102,30 @@
   font-family: 'Catamaran', sans-serif;
 }
 
+#content table thead {
+  background-color: var(--blue-royal);
+}
+
+#content table tbody tr:nth-child(even) {
+  background-color: var(--second-bg);
+}
+
+#content table tbody tr:nth-child(odd) {
+  background-color: var(--fourth-bg);
+}
+
+#content table tbody tr:hover {
+  background-color: var(--hover);
+}
+
+#content table tbody td[data-label=Topics] {
+  color: var(--green-light);
+}
+
+#content table tbody td[data-label=Time], td[data-label=Source]  {
+  color: #7b7b7b;
+}
+
 @media screen and (max-width: 600px) {
   #navigation-bar {
   	display: none;
@@ -138,7 +166,7 @@
   #content table tr {
     border-bottom: 3px solid #ddd;
     display: block;
-    margin-bottom: .625em;
+    /*margin-bottom: .625em;*/
   }
   
   #content table td {
@@ -159,6 +187,7 @@
     float: left;
     font-weight: bold;
     text-transform: uppercase;
+    color: white;
   }
   
   #content table td:last-child {
